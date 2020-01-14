@@ -42,9 +42,11 @@ def scrape_one(work):
 
     # actor
     # empty list if none
-    actors = work.find('a', class_='author')
+    actors = work.find(class_='author')
     if actors == None:
         actors = []
+    else:
+        actors = actors.find_all('a')
     work_info['actor'] = [actor.text for actor in actors]
 
     # category
@@ -74,6 +76,9 @@ def scrape_one(work):
     # tags
     tag_a = work.find(class_='search_tag').find_all('a')
     work_info['tags'] = [a.text for a in tag_a]
+
+    # thumb-nail
+    work_info['thumb'] = 'https:' + work.find('img')['src']
 
     # url
     work_info['url'] = work.find(class_='work_name').a['href']

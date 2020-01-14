@@ -3,7 +3,7 @@ FROM python:3.7
 
 RUN apt-get update && apt-get upgrade -y
 
-EXPOSE 3000
+EXPOSE 8080
 
 WORKDIR /src
 

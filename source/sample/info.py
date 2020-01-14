@@ -16,7 +16,7 @@ response = requests.get(url)
 soup = BeautifulSoup(response.text, 'lxml')
 
 search_result = soup.find(id='search_result_list')
-work_list = search_result.find_all('tr')
+work_list = search_result.find('table').find_all('tr', recursive=False)
 
 for work0 in work_list:
 
@@ -33,9 +33,11 @@ for work0 in work_list:
         price = work0.find(class_='work_price')
     work_info['price'] = price.text.strip('円').replace(',', '')
 
-    actors = work0.find('a', class_='author')
+    actors = work0.find(class_='author')
     if actors == None:
         actors = []
+    else:
+        actors = actors.find_all('a')
     work_info['actor'] = [actor.text for actor in actors]
 
     work_info['description'] = work0.find(class_='work_text').text
@@ -49,4 +51,8 @@ for work0 in work_list:
 
     work_info['id'] = work_info['url'].split('/')[-1].split('.')[0]
 
+    work_info['thumb'] = 'https:' + work0.find('img')['src']
+
     pprint.pprint(work_info)
+
+    break
