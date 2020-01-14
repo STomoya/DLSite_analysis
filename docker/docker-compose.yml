@@ -1,0 +1,11 @@
+version: '2.1'
+
+services:
+  dlsite_analysis:
+    build: .
+    volumes:
+      - ..:/src
+    ports:
+      - 3000:3000
+    tty:
+      true
