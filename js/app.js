@@ -1,7 +1,7 @@
 app = new Vue({
     el: '#app',
     data: {
-        selected_actor: "小石川うに",
+        selected_actor: null,
         labels: basic_data["labels"],
         colors: basic_data["colors"],
         actors: basic_data['actors'],
@@ -23,10 +23,15 @@ app = new Vue({
                     datasets: [{
                         backgroundColor: this.colors,
                         data: dataList,
-                        borderWidth: 0
+                        borderWidth: 1
                     }]
                 },
                 options: {
+                    title: {
+                        display: true,
+                        text: '出演作品のタグ合計  (2020.01.15データ入手)',
+                        fontSize: 18
+                    },
                     legend: {
                         display: false
                     },

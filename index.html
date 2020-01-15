@@ -49,13 +49,15 @@
 
     <!-- main -->
     <div id="app" class="container">
-        <div class="input-group col-sm-10">
-            <input v-model="selected_actor" type="text" id="actor_input" autocomplete="on" list="actors" class="form-control">
+        <br>
+        <div class="input-group">
+            <input v-model="selected_actor" type="text" id="actor_input" autocomplete="on" list="actors" class="form-control" placeholder="e.g. そらまめ。">
             <datalist id="actors">
                 <option v-for="actor in actors" :key="actor">{{ actor }}</option>
             </datalist>
             <button @click="update_chart()" class="btn btn-outline-secondary input-group-append">検索</button>
         </div>
+        <br>
         <div style="position: relative; height: 70vh;">
             <canvas id="tag-chart"></canvas>
         </div>
