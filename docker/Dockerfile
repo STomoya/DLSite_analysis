@@ -1,7 +1,11 @@
 
 FROM python:3.7
 
-RUN apt-get update && apt-get upgrade -y
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    git \
+    make
 
 EXPOSE 8080
 
