@@ -20,8 +20,8 @@ js_str += '],\n'
 # colors
 js_str += '    \"colors\":['
 for index, _ in enumerate(basic_info['tags']):
-    colors = ['#0088ff', '#88ff00', '#ff0088']
-    line = '\"{}\",'.format(colors[index%3])
+    colors = ['#0088ff', '#88ff00', '#ff0088', '#0000ff', '#00ff00', '#ff0000']
+    line = '\"{}\",'.format(colors[index%len(colors)])
     js_str += line
 js_str += '],\n'
 
