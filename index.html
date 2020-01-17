@@ -19,7 +19,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Bootstrap4 end -->
     <!-- Ionicons -->
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     <!-- Ionicons end -->
     <!-- CDNs end -->
 </head>
@@ -48,20 +49,45 @@
     <!-- navbar end -->
 
     <!-- main -->
+    <br>
     <div id="app" class="container">
-        <br>
-        <div class="input-group">
-            <input v-model="selected_actor" type="text" id="actor_input" autocomplete="on" list="actors" class="form-control" placeholder="e.g. そらまめ。">
-            <datalist id="actors">
-                <option v-for="actor in actors" :key="actor">{{ actor }}</option>
-            </datalist>
-            <button @click="update_chart()" class="btn btn-outline-secondary input-group-append">検索</button>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-actor-tab" data-toggle="tab" href="#nav-actor" role="tab" aria-controls="nav-actor" aria-selected="true">声優</a>
+                <a class="nav-item nav-link" id="nav-tag-tab" data-toggle="tab" href="#nav-tag" role="tab" aria-controls="nav-tag" aria-selected="false">タグ</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-actor" role="tabpanel" aria-labelledby="nav-actor-tab">
+                <br>
+                <div class="input-group">
+                    <input v-model="selected_actor" type="text" id="actor_input" autocomplete="on" list="actors" class="form-control" placeholder="e.g. そらまめ。">
+                    <datalist id="actors">
+                        <option v-for="actor in actors" :key="actor">{{ actor }}</option>
+                    </datalist>
+                    <button @click="update_tag_chart()" class="btn btn-outline-secondary input-group-append">検索</button>
+                </div>
+                <br>
+                <div style="position: relative; height: 70vh;">
+                    <canvas id="tag-chart"></canvas>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-tag" role="tabpanel" aria-labelledby="nav-tag-tab">
+                <br>
+                <div class="input-group">
+                    <input v-model="selected_tag" type="text" id="tag-input" autocomplete="on" list="tags" class="form-control" placeholder="e.g. バイノーラル/ダミヘ">
+                    <datalist id="tags">
+                        <option v-for="tag in labels" :key="tag">{{ tag }}</option>
+                    </datalist>
+                    <button @click="update_actor_chart()" class="btn btn-outline-secondary input-group-append">検索</button>
+                </div>
+                <br>
+                <div style="position: relative; height: 70vh;">
+                    <canvas id="actor-chart"></canvas>
+                </div>
+            </div>
         </div>
-        <br>
-        <div style="position: relative; height: 70vh;">
-            <canvas id="tag-chart"></canvas>
-        </div>
-    </div>
+      </div>
     <!-- main end -->
     <script src="js/variable.js"></script>
     <script src="js/app.js"></script>
